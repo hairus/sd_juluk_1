@@ -54,9 +54,50 @@
     .example-modal .modal {
       background: transparent !important;
     }
+    #ajax-loading-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 9999;
+
+        /* Posisikan tengah layar */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        /* Nonaktifkan klik */
+        pointer-events: all;
+    }
+
+    .loading-content {
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .spinner-border {
+        border: 0.4em solid rgba(255,255,255,0.2);
+        border-top: 0.4em solid #ffffff;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+        animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+        100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+<div id="ajax-loading-overlay">
+    <div class="loading-content text-center">
+        <div class="spinner-border" role="status"></div>
+{{--        <p class="mt-3">Memproses data...</p>--}}
+    </div>
+</div>
 <div class="wrapper">
 
     <header class="main-header">
@@ -286,28 +327,28 @@
 
                                 <p>
                                     {{ auth()->user()->name }}
-                                    <small>Member since Nov. 2012</small>
+                                    <small>Guru Hebat ....!</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </li>
+{{--                            <li class="user-body">--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="col-xs-4 text-center">--}}
+{{--                                        <a href="#">Followers</a>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-xs-4 text-center">--}}
+{{--                                        <a href="#">Sales</a>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-xs-4 text-center">--}}
+{{--                                        <a href="#">Friends</a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <!-- /.row -->--}}
+{{--                            </li>--}}
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="{{ url('/guru/profile') }}" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ '/logout' }}" class="btn btn-default btn-flat">Sign out</a>

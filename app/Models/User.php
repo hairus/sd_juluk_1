@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function gms()
+    {
+        return $this->hasMany(GuruMapel::class, 'guru_id');
+    }
 }

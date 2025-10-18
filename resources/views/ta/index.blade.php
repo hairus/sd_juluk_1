@@ -91,6 +91,7 @@
 @endsection
 @section('script')
     <script>
+        $("#ajax-loading-overlay").fadeOut(200);
         $(function() {
             $('#example1').DataTable()
         })

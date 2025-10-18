@@ -13,6 +13,7 @@ class KelasSiswaController extends Controller
     public function index()
     {
         $siswas = Siswa::all();
+
         return view('kelas-siswa.index', compact('siswas'));
     }
 

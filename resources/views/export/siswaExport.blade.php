@@ -5,6 +5,8 @@
             <th>Nis</th>
             <th>Nama</th>
             <th>Kelas</th>
+            <th>Hp Ayah</th>
+            <th>Hp Ibu</th>
         </tr>
     </thead>
     <tbody>
@@ -12,8 +14,10 @@
             <tr>
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $siswa->nis }}</td>
-                <td>{{ $siswa->nama }}</td>
+                <td>{{ $siswa->name }}</td>
                 <td>{{ $siswa->kelas->id }}</td>
+                <td>{{ $siswa->hpa }}</td>
+                <td>{{ $siswa->hpi }}</td>
             </tr>
         @endforeach
     </tbody>

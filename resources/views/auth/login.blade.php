@@ -29,7 +29,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/') }}"><b>Admin</b>LTE</a>
+        <a href="{{ url('/') }}"><b>Siakad Parjughe</b> <br>SD JULUK 1</a>
     </div>
 
     <div class="login-box-body">

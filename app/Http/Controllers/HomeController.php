@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GuruMapel;
 use App\Models\kelas;
+use App\Models\mapel;
 use App\Models\pelanggaran_siswa;
 use App\Models\Siswa;
 use App\Models\User;
@@ -28,10 +30,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        if(auth()->user()->role == 'admin'){
+            $users = User::all();
+            $siswas = Siswa::all();
+            $mapels = Mapel::all();
+            $gms = GuruMapel::all();
+            $kelas = kelas::all();
 
+        return view('home', compact('users', 'siswas', 'mapels', 'gms', 'kelas'));
+        }else{
+            return  redirect('/guru/profile');
+        }
 
-        return view('home', compact('users'));
     }
 
     public function logout()

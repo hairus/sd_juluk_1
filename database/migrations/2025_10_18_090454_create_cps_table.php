@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('siswas', function (Blueprint $table) {
+        Schema::create('cps', function (Blueprint $table) {
             $table->id();
-            $table->string('nis')->unique();
-            $table->string('nama');
+            $table->unsignedBigInteger('mapel_id');
             $table->unsignedBigInteger('kelas_id');
+            $table->unsignedBigInteger('ta_id');
+            $table->integer('smt');
+            $table->text('cp');
+            $table->foreign('mapel_id')->references('id')->on('mapels')->onDelete('cascade');
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
+            $table->foreign('ta_id')->references('id')->on('tas')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('siswas');
+        Schema::dropIfExists('cps');
     }
 };

@@ -7,7 +7,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>{{ auth()->user()->name }}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -38,10 +38,7 @@
                     <ul class="treeview-menu">
                         <li class="active"><a href="{{ url('/home') }}"><i class="fa fa-circle-o"></i> Home</a></li>
                         <li class="active"><a href="{{ url('/ta') }}"><i class="fa fa-circle-o"></i> TA</a></li>
-                        <li><a href="{{ url('/kelas') }}"><i class="fa fa-circle-o"></i> Kelas</a></li>
-                        <li><a href="{{ url('/kelas-siswa') }}"><i class="fa fa-circle-o"></i> Kelas Siswa</a></li>
-                        <li><a href="{{ url('/tatib') }}"><i class="fa fa-circle-o"></i> Tatib</a></li>
-                        <li><a href="{{ url('/pelanggaran-siswa') }}"><i class="fa fa-circle-o"></i> Pelanggaran</a>
+                        <li class="active"><a href="{{ url('/admin/manPem') }}"><i class="fa fa-circle-o"></i> Management Pembalajaran</a></li>
                         </li>
                     </ul>
                 </li>
@@ -215,7 +212,11 @@
                     </a>
 
                     <ul class="treeview-menu">
-                        <li><a href="{{ url('/pelanggaran-siswa') }}"><i class="fa fa-circle-o"></i> Pelanggaran</a>
+                        <li>
+                            <a href="{{ url('/guru/profile') }}"><i class="fa fa-circle-o"></i> Profil</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/guru/pembelajaran') }}"><i class="fa fa-circle-o"></i> Pembelajaran</a>
                         </li>
                     </ul>
                 </li>

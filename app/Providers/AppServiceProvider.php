@@ -31,10 +31,10 @@ class AppServiceProvider extends ServiceProvider
             $siswas      = Siswa::count();
             $gurus       = User::count();
             $kelas       = Kelas::count();
-            $pelanggaran = pelanggaran_siswa::count();
+//            $pelanggaran = pelanggaran_siswa::count();
 
             // kirim data ke view
-            $view->with(compact('siswas', 'gurus', 'kelas', 'pelanggaran'));
+            $view->with(compact('gurus', 'siswas', 'kelas'));
         });
     }
 }
