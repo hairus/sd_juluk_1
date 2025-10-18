@@ -7,6 +7,8 @@ use App\Models\kelas;
 use App\Models\mapel;
 use App\Models\pelanggaran_siswa;
 use App\Models\Siswa;
+use App\Models\ta;
+use App\Models\trx_pembelajaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,8 +40,20 @@ class HomeController extends Controller
             $kelas = kelas::all();
 
         return view('home', compact('users', 'siswas', 'mapels', 'gms', 'kelas'));
-        }else{
+
+        }else if(auth()->user()->role == 'guru'){
             return  redirect('/guru/profile');
+        }else if(auth()->user()->role == 'ks'){
+            $ta = ta::where('aktif', 1)->first();
+            $tgl_skr = date('Y-m-d');
+            $tgl_kemarin = date('Y-m-d', strtotime('-1 day', strtotime($tgl_skr)));
+            $trx = trx_pembelajaran::where([
+                'ta_id' => $ta->id,
+            ])->whereBetween('tgl_pembelajaran' ,[$tgl_kemarin, $tgl_skr])->orderBy('created_at', 'DESC')->orderBy('approve', 'ASC')->get();
+
+            return view('ks.index', compact('trx'));
+        }else{
+            return abort();
         }
 
     }

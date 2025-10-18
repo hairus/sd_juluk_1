@@ -6,7 +6,9 @@ use App\Models\cp;
 use App\Models\GuruMapel;
 use App\Models\kegiatan;
 use App\Models\kelas;
+use App\Models\ta;
 use App\Models\tp;
+use App\Models\trx_pembelajaran;
 use Illuminate\Http\Request;
 
 class GuruController extends Controller
@@ -25,8 +27,11 @@ class GuruController extends Controller
     {
         $gms = GuruMapel::where('guru_id', auth()->user()->id)->get();
         $kelas = kelas::all();
+        $pems = trx_pembelajaran::where([
+            "guru_id" => auth()->user()->id,
+        ])->whereMonth('tgl_pembelajaran', date('m'))->orderBy('created_at', 'DESC')->get();
 
-        return view('guru.pembelajaran', compact('gms', 'kelas'));
+        return view('guru.pembelajaran', compact('gms', 'kelas', 'pems'));
     }
 
     public function getCp(Request $request)
@@ -51,5 +56,37 @@ class GuruController extends Controller
         $kegs = kegiatan::where('cp_id', $request->cp_id)->get();
 
         return view('guru.getKeg', compact('kegs'));
+    }
+
+    public function sim(Request $request)
+    {
+        $count_keg = count($request->keg);
+        if($count_keg >= 1){
+            $ta = ta::where('aktif',1)->first();
+            $tanggalFormatted = \Carbon\Carbon::createFromFormat('m/d/Y', $request->tgl)->format('Y-m-d');
+            for ($i=0; $i < $count_keg; $i++) {
+                trx_pembelajaran::create([
+                    "tgl_pembelajaran" => $tanggalFormatted,
+                    "guru_id" => auth()->user()->id,
+                    "mapel_id" => $request->mapel,
+                    "kelas_id" => $request->kelas_id,
+                    "cp_id" => $request->cp,
+                    "tp_id" => $request->tp,
+                    "kegiatan_id" => $request->keg[$i],
+                    "ta_id" => $ta->id,
+                ]);
+            }
+
+            return back();
+        }else{
+            return back()->with('pesan', 'maaf Pemilihan kegiatan kurang dari 3 kegiatan');
+        }
+    }
+
+    public function delPem($id)
+    {
+        trx_pembelajaran::find($id)->delete();
+
+        return back();
     }
 }

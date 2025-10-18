@@ -56,4 +56,11 @@ Route::post('/guru/getCp', [App\Http\Controllers\GuruController::class, 'getCp']
 Route::post('/guru/getTp', [App\Http\Controllers\GuruController::class, 'getTp']);
 Route::post('/guru/getKeg', [App\Http\Controllers\GuruController::class, 'getKeg']);
 
+Route::post('/guru/sim', [App\Http\Controllers\GuruController::class, 'sim']);
+Route::get('/guru/delPem/{id}', [App\Http\Controllers\GuruController::class, 'delPem']);
+
+Route::get('/ks/approve/{id}', [App\Http\Controllers\KsContoller::class, 'approve']);
+Route::get('/ks/unprove/{id}', [App\Http\Controllers\KsContoller::class, 'unprove']);
+
+//sampai dsini
 
