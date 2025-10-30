@@ -43,6 +43,7 @@ Route::get('/admin/delGm/{id}', [App\Http\Controllers\AdminController::class, 'd
 
 
 Route::get('/admin/manPem', [App\Http\Controllers\AdminController::class, 'manPem']);
+Route::get('/admin/manDpl', [App\Http\Controllers\AdminController::class, 'manDpl']);
 Route::post('/admin/addCp', [App\Http\Controllers\AdminController::class, 'addCp']);
 Route::get('/admin/delCp/{id}', [App\Http\Controllers\AdminController::class, 'delCp']);
 

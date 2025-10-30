@@ -3,6 +3,7 @@
         @include('admin.manPem.modal.addCp')
         @include('admin.manPem.modal.addTp')
         @include('admin.manPem.modal.addKeg')
+        @include('admin.manPem.modal.addDpl')
         <div class="table table-responsive">
             <div class="box-header">
                 <div class="box-title">
@@ -20,6 +21,10 @@
                 <button class="btn btn-sm btn-warning pull-right" style="margin: 5px" data-toggle="modal"
                         data-target="#modal-addCp">
                     Capaian Pembelajaran
+                </button>
+                <button class="btn btn-sm btn-secondary pull-right" style="margin: 5px" data-toggle="modal"
+                        data-target="#modal-addDpl">
+                    Dimensi profil Lulusan
                 </button>
             </div>
             <table id="tableCp" class="table table-bordered table-hover">
