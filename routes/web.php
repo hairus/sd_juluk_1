@@ -61,6 +61,5 @@ Route::get('/guru/delPem/{id}', [App\Http\Controllers\GuruController::class, 'de
 
 Route::get('/ks/approve/{id}', [App\Http\Controllers\KsContoller::class, 'approve']);
 Route::get('/ks/unprove/{id}', [App\Http\Controllers\KsContoller::class, 'unprove']);
-
 //sampai dsini
 

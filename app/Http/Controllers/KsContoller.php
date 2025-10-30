@@ -25,3 +25,5 @@ class KsContoller extends Controller
         return back();
     }
 }
+
+
