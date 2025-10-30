@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cp;
+use App\Models\dpl;
 use App\Models\GuruMapel;
 use App\Models\kegiatan;
 use App\Models\kelas;
@@ -61,10 +62,10 @@ class GuruController extends Controller
     public function sim(Request $request)
     {
         $count_keg = count($request->keg);
-        if($count_keg >= 1){
-            $ta = ta::where('aktif',1)->first();
+        if ($count_keg >= 1) {
+            $ta = ta::where('aktif', 1)->first();
             $tanggalFormatted = \Carbon\Carbon::createFromFormat('m/d/Y', $request->tgl)->format('Y-m-d');
-            for ($i=0; $i < $count_keg; $i++) {
+            for ($i = 0; $i < $count_keg; $i++) {
                 trx_pembelajaran::create([
                     "tgl_pembelajaran" => $tanggalFormatted,
                     "guru_id" => auth()->user()->id,
@@ -74,11 +75,11 @@ class GuruController extends Controller
                     "tp_id" => $request->tp,
                     "kegiatan_id" => $request->keg[$i],
                     "ta_id" => $ta->id,
+                    "dpl_id" => $request->dpl,
                 ]);
             }
-
-            return back();
-        }else{
+            return back()->with('message', 'Berhasil Input Pembelajaran');
+        } else {
             return back()->with('pesan', 'maaf Pemilihan kegiatan kurang dari 3 kegiatan');
         }
     }
@@ -88,5 +89,25 @@ class GuruController extends Controller
         trx_pembelajaran::find($id)->delete();
 
         return back();
+    }
+
+    public function getDl(Request $request)
+    {
+        $dls = dpl::all();
+
+        $cek = trx_pembelajaran::where([
+            "cp_id" => $request->cp_id
+        ])->count();
+
+        $data = trx_pembelajaran::where([
+            "cp_id" => $request->cp_id
+        ])->first();
+
+        if ($cek >= 1) {
+            $dls = dpl::where('id', $data->dpl_id)->get();
+            return view('guru.dls', compact('dls'));
+        } else {
+            return view('guru.dls', compact('dls'));
+        }
     }
 }

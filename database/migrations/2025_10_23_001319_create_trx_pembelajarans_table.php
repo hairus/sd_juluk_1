@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('mapel_id');
             $table->unsignedBigInteger('kelas_id');
             $table->unsignedBigInteger('kegiatan_id');
+            $table->unsignedBigInteger('dpl_id');
             $table->date('tgl_pembelajaran');
             $table->boolean('approve')->default(0);
             $table->foreign('guru_id')->references('id')->on('users')->onDelete('cascade');
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->foreign('tp_id')->references('id')->on('tps')->onDelete('cascade');
             $table->foreign('mapel_id')->references('id')->on('mapels')->onDelete('cascade');
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
+            $table->foreign('dpl_id')->references('id')->on('dpls')->onDelete('cascade');
             $table->timestamps();
         });
     }

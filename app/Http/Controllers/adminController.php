@@ -7,6 +7,7 @@ use App\Exports\SiswaExport;
 use App\Imports\GuruImport;
 use App\Imports\SiswaImport;
 use App\Models\cp;
+use App\Models\dpl;
 use App\Models\GuruMapel;
 use App\Models\kegiatan;
 use App\Models\kelas;
@@ -129,8 +130,9 @@ class adminController extends Controller
         $mapels = mapel::all();
         $kelas = kelas::all();
         $cps = cp::with('mapels', 'kelas', 'tas', 'tps', 'kegiatans')->get();
+        $dpls = dpl::all();
 
-        return view('admin.manPem.index', compact('mapels', 'kelas', 'cps'));
+        return view('admin.manPem.index', compact('mapels', 'kelas', 'cps', 'dpls'));
     }
 
     public function addCp(Request $request)

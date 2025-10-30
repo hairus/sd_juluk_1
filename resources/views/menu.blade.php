@@ -231,7 +231,7 @@
 
                 <ul class="treeview-menu">
                     <li>
-                        <a href="{{ url('/ks/approval') }}"><i class="fa fa-circle-o"></i> Approval</a>
+                        <a href="{{ url('/ks/profile') }}"><i class="fa fa-circle-o"></i> Approval</a>
                     </li>
                 </ul>
             </li>

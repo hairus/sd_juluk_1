@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('dpls', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('ta_id');
-            $table->unsignedBigInteger('mapel_id');
-            $table->unsignedBigInteger('cp_id');
-            $table->unsignedBigInteger('dpl');
+            $table->string('dimensi');
             $table->timestamps();
         });
     }

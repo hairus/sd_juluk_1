@@ -35,4 +35,9 @@ class trx_pembelajaran extends Model
     {
         return $this->belongsTo(User::class, 'guru_id');
     }
+
+    public function dpls()
+    {
+        return $this->belongsTo(dpl::class, 'dpl_id');
+    }
 }

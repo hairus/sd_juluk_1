@@ -20,6 +20,14 @@
                                     {{ session('pesan') }}
                                 </div>
                             @endif
+                            @if (session('message'))
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+                                    </button>
+                                    <h4><i class="icon fa fa-ban"></i> Berhasil!</h4>
+                                    {{ session('message') }}
+                                </div>
+                            @endif
                             <form action="{{ url('/guru/sim') }}" method="post">
                                 @csrf
                                 <div class="form-group">
@@ -46,6 +54,7 @@
                                 </div>
                                 <div id="tampilCp"></div>
                                 <div id="tampilTp"></div>
+                                <div id="tampilDl"></div>
                                 <div id="tampilKegiatan"></div>
                                 <button class="btn btn-sm btn-primary" type="submit">Simpan</button>
                             </form>
@@ -63,6 +72,7 @@
                                 <thead>
                                 <tr>
                                     <td>No</td>
+                                    <td>DPL</td>
                                     <td>Mapel</td>
                                     <td>Kelas</td>
                                     <td>CP</td>
@@ -77,6 +87,7 @@
                                 @foreach($pems as $key => $pem)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
+                                        <td>{{ $pem->dpls->dimensi }}</td>
                                         <td>{{ $pem->mapels->mapel }}</td>
                                         <td>{{ $pem->kelas->nama_kelas }}</td>
                                         <td>{{ $pem->cps->cp }}</td>
@@ -156,6 +167,28 @@
                         },
                         success: function (response) {
                             $('#tampilTp').html(response); // tampilkan HTML
+                            $("#ajax-loading-overlay").fadeOut(200);
+                        },
+                        error: function (xhr) {
+                            $("#ajax-loading-overlay").fadeOut(200);
+                            alert('Terjadi kesalahan!');
+
+                        }
+                    });
+                }
+
+                function getDl(){
+                    $("#ajax-loading-overlay").fadeIn(200);
+                    let cp_id = $('#cp_id').val();
+                    $.ajax({
+                        url: "{{ url('/guru/getDl') }}",
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            cp_id : cp_id
+                        },
+                        success: function (response) {
+                            $('#tampilDl').html(response); // tampilkan HTML
                             $("#ajax-loading-overlay").fadeOut(200);
                         },
                         error: function (xhr) {

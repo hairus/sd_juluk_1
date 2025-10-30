@@ -55,6 +55,7 @@ Route::get('/guru/profile', [App\Http\Controllers\GuruController::class, 'profil
 Route::get('/guru/pembelajaran', [App\Http\Controllers\GuruController::class, 'pembelajaran']);
 Route::post('/guru/getCp', [App\Http\Controllers\GuruController::class, 'getCp']);
 Route::post('/guru/getTp', [App\Http\Controllers\GuruController::class, 'getTp']);
+Route::post('/guru/getDl', [App\Http\Controllers\GuruController::class, 'getDl']);
 Route::post('/guru/getKeg', [App\Http\Controllers\GuruController::class, 'getKeg']);
 
 Route::post('/guru/sim', [App\Http\Controllers\GuruController::class, 'sim']);
