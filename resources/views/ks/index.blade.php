@@ -7,7 +7,8 @@
                     <div class="box box-primary">
                         <div class="box-header">
                             <div class="box-title">
-                                <h3>Approval</h3>
+                                <h3>Approval Pembelajaran</h3>
+                                <code>* Untuk Hari ini dan kemarin</code>
                             </div>
                         </div>
                         <div class="box-body">
@@ -57,7 +58,6 @@
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
