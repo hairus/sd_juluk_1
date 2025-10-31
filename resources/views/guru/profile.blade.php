@@ -9,7 +9,7 @@
                         <div class="box-body">
                             <div class="box-header">
                                 <div class="box-title">
-                                    <h3>Profile Guru</h3>
+                                    <h3>Profile Guru test 15 menit</h3>
                                     <h4 style="margin-top: 20px">Selamat Datang Guru Hebat.. </h4>
                                     <h4><b>{{ strtoupper(auth()->user()->name) }}</b></h4>
                                 </div>
