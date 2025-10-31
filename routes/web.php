@@ -30,26 +30,26 @@ Route::get('/pelanggaran-siswa/del/{id}',[\App\Http\Controllers\PelanggaranSiswa
 
 
 
-Route::get('/admin/dg', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.dg');
-Route::get('/admin/ds', [App\Http\Controllers\AdminController::class, 'ds'])->name('admin.ds');
-Route::post('/admin/ig', [App\Http\Controllers\AdminController::class, 'ig']);
-Route::post('/admin/is', [App\Http\Controllers\AdminController::class, 'is']);
-Route::get('/admin/del/{id}', [App\Http\Controllers\AdminController::class, 'delGuru']);
-Route::get('/admin/delSis/{id}', [App\Http\Controllers\AdminController::class, 'delSiswa']);
-Route::post('/admin/addMapel', [App\Http\Controllers\AdminController::class, 'addMapel']);
-Route::get('/admin/delMapel/{id}', [App\Http\Controllers\AdminController::class, 'delMapel']);
-Route::post('/admin/addGm', [App\Http\Controllers\AdminController::class, 'addGm']);
-Route::get('/admin/delGm/{id}', [App\Http\Controllers\AdminController::class, 'delGm']);
+Route::get('/admin/dg', [App\Http\Controllers\adminController::class, 'index'])->name('admin.dg');
+Route::get('/admin/ds', [App\Http\Controllers\adminController::class, 'ds'])->name('admin.ds');
+Route::post('/admin/ig', [App\Http\Controllers\adminController::class, 'ig']);
+Route::post('/admin/is', [App\Http\Controllers\adminController::class, 'is']);
+Route::get('/admin/del/{id}', [App\Http\Controllers\adminController::class, 'delGuru']);
+Route::get('/admin/delSis/{id}', [App\Http\Controllers\adminController::class, 'delSiswa']);
+Route::post('/admin/addMapel', [App\Http\Controllers\adminController::class, 'addMapel']);
+Route::get('/admin/delMapel/{id}', [App\Http\Controllers\adminController::class, 'delMapel']);
+Route::post('/admin/addGm', [App\Http\Controllers\adminController::class, 'addGm']);
+Route::get('/admin/delGm/{id}', [App\Http\Controllers\adminController::class, 'delGm']);
 
 
-Route::get('/admin/manPem', [App\Http\Controllers\AdminController::class, 'manPem']);
-Route::get('/admin/manDpl', [App\Http\Controllers\AdminController::class, 'manDpl']);
-Route::post('/admin/addCp', [App\Http\Controllers\AdminController::class, 'addCp']);
-Route::get('/admin/delCp/{id}', [App\Http\Controllers\AdminController::class, 'delCp']);
+Route::get('/admin/manPem', [App\Http\Controllers\adminController::class, 'manPem']);
+Route::get('/admin/manDpl', [App\Http\Controllers\adminController::class, 'manDpl']);
+Route::post('/admin/addCp', [App\Http\Controllers\adminController::class, 'addCp']);
+Route::get('/admin/delCp/{id}', [App\Http\Controllers\adminController::class, 'delCp']);
 
-Route::post('/admin/getCp', [App\Http\Controllers\AdminController::class, 'getCp']);
-Route::post('/admin/addTp', [App\Http\Controllers\AdminController::class, 'addTp']);
-Route::post('/admin/addKegiatan', [App\Http\Controllers\AdminController::class, 'addKegiatan']);
+Route::post('/admin/getCp', [App\Http\Controllers\adminController::class, 'getCp']);
+Route::post('/admin/addTp', [App\Http\Controllers\adminController::class, 'addTp']);
+Route::post('/admin/addKegiatan', [App\Http\Controllers\adminController::class, 'addKegiatan']);
 
 Route::get('/guru/profile', [App\Http\Controllers\GuruController::class, 'profil']);
 Route::get('/guru/pembelajaran', [App\Http\Controllers\GuruController::class, 'pembelajaran']);

@@ -3,8 +3,7 @@
 namespace App\Providers;
 
 use App\Models\kelas;
-use App\Models\pelanggaran_siswa;
-use App\Models\Siswa;
+use App\Models\siswa;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\View;
