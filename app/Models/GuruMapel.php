@@ -8,7 +8,7 @@ class GuruMapel extends Model
 {
     public function mapels()
     {
-        return $this->belongsTo(Mapel::class, 'mapel_id');
+        return $this->belongsTo(mapel::class, 'mapel_id');
     }
 
     public function users()
