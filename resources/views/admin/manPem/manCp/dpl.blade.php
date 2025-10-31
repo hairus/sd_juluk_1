@@ -3,7 +3,7 @@
         <div class="table table-responsive">
             <div class="box-header">
                 <div class="box-title">
-                    <h3><b>+ DIMENSI PROFIL PENILAIAN +</b></h3>
+                    <h3><b> DIMENSI PROFIL PENILAIAN </b></h3>
                 </div>
             </div>
             <table id="tableCp" class="table table-bordered table-hover">
