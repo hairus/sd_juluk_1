@@ -38,8 +38,8 @@
                                     <label>Pilih Kelas</label>
                                     <select class="form-control" name="kelas_id" id="kelas_id">
                                         <option value="">---</option>
-                                        @foreach($kelas as $kls)
-                                            <option value="{{ $kls->id }}">{{ $kls->nama_kelas }}</option>
+                                        @foreach($kls as $k)
+                                            <option value="{{ $k->kelas_id }}">{{ $k->kelas->nama_kelas }}</option>
                                         @endforeach
                                     </select>
                                 </div>

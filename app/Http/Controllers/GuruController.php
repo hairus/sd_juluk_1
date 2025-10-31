@@ -27,12 +27,14 @@ class GuruController extends Controller
     public function pembelajaran()
     {
         $gms = GuruMapel::where('guru_id', auth()->user()->id)->get();
-        $kelas = kelas::all();
+        $kls = GuruMapel::select('kelas_id')->where([
+            "guru_id" => auth()->user()->id,
+        ])->distinct()->get();
         $pems = trx_pembelajaran::where([
             "guru_id" => auth()->user()->id,
         ])->whereMonth('tgl_pembelajaran', date('m'))->orderBy('created_at', 'DESC')->get();
 
-        return view('guru.pembelajaran', compact('gms', 'kelas', 'pems'));
+        return view('guru.pembelajaran', compact('gms', 'pems', 'kls'));
     }
 
     public function getCp(Request $request)
