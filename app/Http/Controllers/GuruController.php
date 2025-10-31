@@ -98,11 +98,15 @@ class GuruController extends Controller
         $dls = dpl::all();
 
         $cek = trx_pembelajaran::where([
-            "cp_id" => $request->cp_id
+            "cp_id" => $request->cp_id,
+            "guru_id" => auth()->user()->id,
+            "mapel_id" => $request->mapel_id
         ])->count();
 
         $data = trx_pembelajaran::where([
-            "cp_id" => $request->cp_id
+            "cp_id" => $request->cp_id,
+            "guru_id" => auth()->user()->id,
+            "mapel_id" => $request->mapel_id
         ])->first();
 
         if ($cek >= 1) {
