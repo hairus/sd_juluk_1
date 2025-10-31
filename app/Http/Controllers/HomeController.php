@@ -6,7 +6,7 @@ use App\Models\GuruMapel;
 use App\Models\kelas;
 use App\Models\mapel;
 use App\Models\pelanggaran_siswa;
-use App\Models\Siswa;
+use App\Models\siswa;
 use App\Models\ta;
 use App\Models\trx_pembelajaran;
 use App\Models\User;
