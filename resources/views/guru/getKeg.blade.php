@@ -2,7 +2,7 @@
     <label>Pilih Kegiatan Min 3 Kegiatan</label><br>
     @foreach($kegs as $data )
         <div>
-            <input type="checkbox" name="keg[]" value="{{ $data->id }}"> {{ $data->kegiatan }}
+            <input type="checkbox" name="keg[]"  required value="{{ $data->id }}"> {{ $data->kegiatan }}
         </div>
     @endforeach
 </div>

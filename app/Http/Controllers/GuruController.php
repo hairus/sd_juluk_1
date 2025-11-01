@@ -26,7 +26,7 @@ class GuruController extends Controller
 
     public function pembelajaran()
     {
-        $gms = GuruMapel::where('guru_id', auth()->user()->id)->get();
+        $gms = GuruMapel::select('mapel_id')->where('guru_id', auth()->user()->id)->distinct()->get();
         $kls = GuruMapel::select('kelas_id')->where([
             "guru_id" => auth()->user()->id,
         ])->distinct()->get();
