@@ -109,6 +109,7 @@ class GuruController extends Controller
             "mapel_id" => $request->mapel_id
         ])->first();
 
+
         if ($cek >= 1) {
             $dls = dpl::where('id', $data->dpl_id)->get();
             return view('guru.dls', compact('dls'));
