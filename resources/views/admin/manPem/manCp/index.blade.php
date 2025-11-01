@@ -47,14 +47,26 @@
                         <td>
                             <ul>
                                 @foreach($data->tps as $tp)
-                                <li>{{ $tp->tp }}</li>
+                                <li>
+                                    {{ $tp->tp }}
+                                    <br>
+                                    <a href="">
+                                        <small class="label label-danger"><i class="fa fa-trash"></i> Delete</small>
+                                    </a>
+                                </li>
                                 @endforeach
                             </ul>
                         </td>
                         <td>
                             <ul>
                                 @foreach($data->kegiatans as $keg)
-                                    <li>{{ $keg->kegiatan }}</li>
+                                    <li>
+                                        {{ $keg->kegiatan }}
+                                        <br>
+                                        <a href="">
+                                            <small class="label label-danger"><i class="fa fa-trash"></i> Delete</small>
+                                        </a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </td>
