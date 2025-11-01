@@ -180,12 +180,14 @@
                 function getDl(){
                     $("#ajax-loading-overlay").fadeIn(200);
                     let cp_id = $('#cp_id').val();
+                    let mapel_id = $('#mapel_id').val();
                     $.ajax({
                         url: "{{ url('/guru/getDl') }}",
                         type: "POST",
                         data: {
                             _token: "{{ csrf_token() }}",
-                            cp_id : cp_id
+                            cp_id : cp_id,
+                            mapel_id : mapel_id
                         },
                         success: function (response) {
                             $('#tampilDl').html(response); // tampilkan HTML
