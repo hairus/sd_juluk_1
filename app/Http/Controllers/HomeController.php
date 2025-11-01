@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\address;
 use App\Models\GuruMapel;
 use App\Models\kelas;
 use App\Models\mapel;
@@ -32,29 +33,45 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->role == 'admin'){
-            $users = User::all();
-            $siswas = Siswa::all();
-            $mapels = Mapel::all();
-            $gms = GuruMapel::all();
-            $kelas = kelas::all();
-
-        return view('home', compact('users', 'siswas', 'mapels', 'gms', 'kelas'));
-
-        }else if(auth()->user()->role == 'guru'){
-            return  redirect('/guru/profile');
-        }else if(auth()->user()->role == 'ks'){
-            $ta = ta::where('aktif', 1)->first();
-            $tgl_skr = date('Y-m-d');
-            $tgl_kemarin = date('Y-m-d', strtotime('-1 day', strtotime($tgl_skr)));
-            $trx = trx_pembelajaran::where([
-                'ta_id' => $ta->id,
-            ])->whereBetween('tgl_pembelajaran' ,[$tgl_kemarin, $tgl_skr])->orderBy('created_at', 'DESC')->orderBy('approve', 'ASC')->get();
-
-            return view('ks.index', compact('trx'));
+        $cek = address::count();
+        $mac = shell_exec('ip link show | grep ether | awk \'{print $2}\' | head -n 1');
+        if($cek == 0){
+            address::create([
+                "mac" => trim($mac),
+                "active" => 1
+            ]);
+            return back();
         }else{
-            return abort();
+            $ad = address::first();
+            if(trim($ad->mac) == trim($mac) && $ad->active == true){
+                if (auth()->user()->role == 'admin') {
+                    $users = User::all();
+                    $siswas = Siswa::all();
+                    $mapels = Mapel::all();
+                    $gms = GuruMapel::all();
+                    $kelas = kelas::all();
+
+                    return view('home', compact('users', 'siswas', 'mapels', 'gms', 'kelas'));
+
+                } else if (auth()->user()->role == 'guru') {
+                    return redirect('/guru/profile');
+                } else if (auth()->user()->role == 'ks') {
+                    $ta = ta::where('aktif', 1)->first();
+                    $tgl_skr = date('Y-m-d');
+                    $tgl_kemarin = date('Y-m-d', strtotime('-1 day', strtotime($tgl_skr)));
+                    $trx = trx_pembelajaran::where([
+                        'ta_id' => $ta->id,
+                    ])->whereBetween('tgl_pembelajaran', [$tgl_kemarin, $tgl_skr])->orderBy('created_at', 'DESC')->orderBy('approve', 'ASC')->get();
+
+                    return view('ks.index', compact('trx'));
+                } else {
+                    return abort();
+                }
+            }else{
+                return abort(403);
+            }
         }
+
 
     }
 
